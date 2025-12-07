@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GG MODS - Premium UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(15, 15, 25, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 255, 170, 0.2);
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 170, 0.1);
+            position: relative;
+        }
+        
+        /* Header dengan judul dan tombol close */
+        .header {
+            background: linear-gradient(90deg, #0a0a0a 0%, #121220 100%);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #00ffaa;
+            position: relative;
+        }
+        
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00ffaa 0%, #00cc88 100%);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #0a0a0a;
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.5);
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #00ffaa 0%, #00ccff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
+        }
+        
+        .close-btn {
+            background: linear-gradient(135deg, #ff3366 0%, #ff0033 100%);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+        }
+        
+        .close-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.8);
+        }
+        
+        /* Tab navigasi */
+        .tabs {
+            display: flex;
+            background: rgba(10, 10, 20, 0.9);
+            border-bottom: 1px solid rgba(0, 255, 170, 0.2);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 18px 10px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #a0a0c0;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab:hover {
+            background: rgba(0, 255, 170, 0.1);
+            color: #f0f0f0;
+        }
+        
+        .tab.active {
+            color: #00ffaa;
+            border-bottom: 3px solid #00ffaa;
+            background: rgba(0, 255, 170, 0.05);
+        }
+        
+        /* Konten tab */
+        .tab-content {
+            padding: 30px;
+            min-height: 400px;
+        }
+        
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Grid untuk fitur-fitur */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: rgba(20, 20, 35, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #00ffaa;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 170, 0.2);
+            background: rgba(25, 25, 40, 0.9);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            color: #00ffaa;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #f0f0f0;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            color: #a0a0c0;
+            line-height: 1.5;
+        }
+        
+        .toggle-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 24px;
+            background: #333350;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #606080;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s;
+        }
+        
+        .toggle-switch.active {
+            background: rgba(0, 255, 170, 0.3);
+        }
+        
+        .toggle-switch.active::after {
+            background: #00ffaa;
+            left: 28px;
+            box-shadow: 0 0 10px rgba(0, 255, 170, 0.8);
+        }
+        
+        /* Slider untuk Tab 2 */
+        .slider-container {
+            margin-bottom: 25px;
+            background: rgba(20, 20, 35, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .slider-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f0f0f0;
+        }
+        
+        .slider-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #00ffaa;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 10px;
+            -webkit-appearance: none;
+            background: linear-gradient(90deg, #00ffaa 0%, #333350 100%);
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #00ffaa;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 170, 0.8);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(0, 255, 170, 0.2);
+            font-size: 14px;
+            color: #8080a0;
+            background: rgba(10, 10, 20, 0.9);
+        }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .title {
+                font-size: 26px;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header dengan judul dan tombol close -->
+        <div class="header">
+            <div class="title-container">
+                <div class="logo">GG</div>
+                <h1 class="title">GG MODS</h1>
+            </div>
+            <button class="close-btn" id="closeBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Tab navigasi -->
+        <div class="tabs">
+            <div class="tab active" data-tab="tab1">FITUR UTAMA</div>
+            <div class="tab" data-tab="tab2">PERGERAKAN</div>
+            <div class="tab" data-tab="tab3">VISUAL ESP</div>
+        </div>
+        
+        <!-- Konten tab -->
+        <div class="tab-content">
+            <!-- Tab 1: Fitur Utama -->
+            <div class="tab-pane active" id="tab1">
+                <h2 style="color: #00ffaa; margin-bottom: 10px;">Fitur Premium GG MODS</h2>
+                <p style="color: #a0a0c0; margin-bottom: 20px;">Aktifkan fitur-fitur premium untuk pengalaman gaming terbaik</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card" data-feature="infjump">
+                        <div class="feature-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <h3 class="feature-title">INFINITE JUMP</h3>
+                        <p class="feature-desc">Lompat tanpa batas, dapat melayang di udara tanpa jatuh</p>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="noclip">
+                        <div class="feature-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h3 class="feature-title">NO CLIP</h3>
+                        <p class="feature-desc">Berjalan menembus dinding dan objek lainnya</p>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="antilag">
+                        <div class="feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3 class="feature-title">ANTI LAG</h3>
+                        <p class="feature-desc">Optimasi performa game untuk pengalaman bermain lebih smooth</p>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="gamepass">
+                        <div class="feature-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="feature-title">GAMEPASS VIP</h3>
+                        <p class="feature-desc">Akses semua item gamepass premium secara gratis</p>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Pergerakan -->
+            <div class="tab-pane" id="tab2">
+                <h2 style="color: #00ffaa; margin-bottom: 10px;">Pengaturan Pergerakan</h2>
+                <p style="color: #a0a0c0; margin-bottom: 20px;">Sesuaikan kecepatan dan kemampuan lompat karakter Anda</p>
+                
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span class="slider-title">WALKSPEED</span>
+                        <span class="slider-value" id="walkspeedValue">16</span>
+                    </div>
+                    <input type="range" min="1" max="100" value="16" class="slider" id="walkspeedSlider">
+                </div>
+                
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span class="slider-title">JUMP POWER</span>
+                        <span class="slider-value" id="jumpPowerValue">50</span>
+                    </div>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="jumpPowerSlider">
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3 class="feature-title">SPEED BOOST</h3>
+                        <p class="feature-desc">Tambahan kecepatan sementara saat menekan tombol shift</p>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <h3 class="feature-title">NO FALL DAMAGE</h3>
+                        <p class="feature-desc">Karakter tidak menerima damage saat jatuh dari ketinggian</p>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 3: Visual ESP -->
+            <div class="tab-pane" id="tab3">
+                <h2 style="color: #00ffaa; margin-bottom: 10px;">Visual ESP Settings</h2>
+                <p style="color: #a0a0c0; margin-bottom: 20px;">Aktifkan ESP untuk melihat musuh melalui dinding</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card" data-feature="esp-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-square"></i>
+                        </div>
+                        <h3 class="feature-title">ESP BOX</h3>
+                        <p class="feature-desc">Tampilkan kotak di sekitar pemain musuh</p>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="esp-line">
+                        <div class="feature-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </div>
+                        <h3 class="feature-title">ESP LINE</h3>
+                        <p class="feature-desc">Garis yang menghubungkan ke posisi musuh</p>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="esp-skeleton">
+                        <div class="feature-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 class="feature-title">ESP SKELETON</h3>
+                        <p class="feature-desc">Tampilkan kerangka tubuh pemain musuh</p>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="esp-bar">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="feature-title">ESP BAR</h3>
+                        <p class="feature-desc">Tampilkan health bar dan info lainnya</p>
+                        <div class="toggle-switch"></div>
+                    </div>
+                </div>
+                
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span class="slider-title">ESP RANGE</span>
+                        <span class="slider-value" id="espRangeValue">500</span>
+                    </div>
+                    <input type="range" min="50" max="2000" value="500" class="slider" id="espRangeSlider">
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            GG MODS Premium v2.1 | © 2023 GG MODS Team | Hanya untuk penggunaan edukasi
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk berpindah tab
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Hapus kelas active dari semua tab
+                document.querySelectorAll('.tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Tambah kelas active ke tab yang diklik
+                tab.classList.add('active');
+                
+                // Sembunyikan semua tab pane
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Tampilkan tab pane yang sesuai
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Fungsi toggle switch
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                
+                // Ambil nama fitur dari card parent
+                const featureCard = this.closest('.feature-card');
+                if (featureCard) {
+                    const featureName = featureCard.getAttribute('data-feature') || 
+                                       featureCard.querySelector('.feature-title').textContent;
+                    const isActive = this.classList.contains('active');
+                    console.log(`Fitur ${featureName} ${isActive ? 'diaktifkan' : 'dinonaktifkan'}`);
+                }
+            });
+        });
+        
+        // Fungsi untuk slider
+        const walkspeedSlider = document.getElementById('walkspeedSlider');
+        const walkspeedValue = document.getElementById('walkspeedValue');
+        
+        walkspeedSlider.addEventListener('input', function() {
+            walkspeedValue.textContent = this.value;
+        });
+        
+        const jumpPowerSlider = document.getElementById('jumpPowerSlider');
+        const jumpPowerValue = document.getElementById('jumpPowerValue');
+        
+        jumpPowerSlider.addEventListener('input', function() {
+            jumpPowerValue.textContent = this.value;
+        });
+        
+        const espRangeSlider = document.getElementById('espRangeSlider');
+        const espRangeValue = document.getElementById('espRangeValue');
+        
+        espRangeSlider.addEventListener('input', function() {
+            espRangeValue.textContent = this.value;
+        });
+        
+        // Fungsi tombol close
+        document.getElementById('closeBtn').addEventListener('click', function() {
+            // Efek animasi sebelum menutup (dalam implementasi nyata, ini akan menutup window)
+            this.style.transform = 'scale(0.8)';
+            this.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                // Simulasi menutup aplikasi
+                document.querySelector('.container').style.transform = 'scale(0.9)';
+                document.querySelector('.container').style.opacity = '0';
+                
+                setTimeout(() => {
+                    alert("GG MODS ditutup. Ini hanya demonstrasi UI.");
+                    // Dalam implementasi nyata, ini akan menutup window
+                    // window.close() atau sesuai d
