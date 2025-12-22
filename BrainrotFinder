@@ -1093,8 +1093,3 @@ if UserInputService.TouchEnabled then
     noclipToggle.TextSize = 18
     tpToolToggle.TextSize = 18
 end
-
-print("Find The Brainrot UI Loaded Successfully!")
-print("Universal Support: Windows & Android")
-print("Features: Teleport System, Tools (Inf Jump, Noclip, TpTool), Key System")
-print("Required Key: WYKEY_k9X63kbHegHSS6ovuU9F")
